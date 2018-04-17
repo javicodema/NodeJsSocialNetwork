@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>{% block titulo %} Red Social {% endblock %}</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	{% block scripts %} {% endblock %}
+</head>
+<body>
+
+
+
+<!-- Barra de Navegación superior -->
+<!-- nav.html -->
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse"
+              data-target="#myNavbar">
+        <span class="icon-bar"></span> <span class="icon-bar"></span> <span
+              class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/home">Home</a></li>
+        <li id="users-menu" class="dropdown"><a class="dropdown-toggle"
+                                                data-toggle="dropdown" href="#" >
+          Gestion de Usuarios <span class="caret"></span>
+        </a>
+          <ul class="dropdown-menu">
+            <li><a href="/user/list">Ver
+              Usuarios</a></li>
+          </ul></li>
+        <li id="requests-menu" class="dropdown"><a class="dropdown-toggle"
+                                                   data-toggle="dropdown" href="#">
+          Gestion de Amistades <span class="caret"></span>
+        </a>
+          <ul class="dropdown-menu">
+            <li><a id="requestsList" href="/requests/received">Ver solicitudes</a></li>
+            <li><a id="friendsList" href="/user/friends" >Ver
+              amigos</a></li>
+          </ul></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/signup"> <span
+                class="glyphicon glyphicon-user"></span> Registrate
+        </a></li>
+        <li><a href="/login"> <span
+                class="glyphicon glyphicon-log-in"></span> Identificate
+        </a></li>
+        <li><a id="logout" href="/logout"> <span
+                class="glyphicon glyphicon-log-out"></span> Desconectar
+        </a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+
+
+<div class="container">
+  <script>
+      var mensaje = getUrlParameter('mensaje');
+      var tipoMensaje = getUrlParameter('tipoMensaje');
+      if ( mensaje != ""){
+          if (tipoMensaje == "" ){
+              tipoMensaje = 'alert-info';
+          }
+          $( ".container" )
+              .append("<div class='alert "+tipoMensaje+"'>"+mensaje+" </div>");
+      }
+      function getUrlParameter(name) {
+          name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+          var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+          var results = regex.exec(location.search);
+          return results === null ? '' :
+              decodeURIComponent(results[1].replace(/\+/g, ' '));
+      };
+  </script>
+
+	<!-- Contenido -->
+{% block contenido_principal %}
+<!-- Posible contenido por defecto -->
+{% endblock %}
+
+	
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <span class="text-muted" th:text="#{title.message}">>&copy; SDI - Red social</span>
+  </div>
+</footer>
+</body>
+</html>
