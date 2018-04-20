@@ -1,8 +1,4 @@
 module.exports = function (app, swig, gestorBD) {
-    app.get("/usuarios", function (req, res) {
-        res.send("ver usuarios");
-    });
-
     app.get("/registrarse", function (req, res) {
         var respuesta = swig.renderFile('views/signup.html', {});
         res.send(respuesta);
@@ -43,6 +39,30 @@ module.exports = function (app, swig, gestorBD) {
         var respuesta = swig.renderFile('views/login.html', {});
         res.send(respuesta);
     });
+    app.get("/agregar/:id", function (req, res) {
+        var receptorId = gestorBD.mongo.ObjectID(req.params.id);
+        gestorBD.obtenerUsuarios(criterio, function(usuarios) {
+            if (usuarios == null || usuarios.length == 0) {
+                res.redirect("/user/list" +
+                    "?mensaje=No es posible agregar a este usuario"+
+                    "&tipoMensaje=alert-danger ");
+            } else {
+                var peticion = {
+                    emisor : req.session.usuario,
+                    receptor : usuarios
+                }
+                gestorBD.insertarPeticion(peticion, function(id){
+                    if (id == null) {
+                        res.redirect("/user/list" +
+                            "?mensaje=Error al insertar la petición"+
+                            "&tipoMensaje=alert-danger ");
+                    } else {
+                        res.redirect("/user/list?mensaje=Usuario agregado correctamente&tipoMensaje=alert-success");
+                    }
+                });
+            }
+        });
+    });
 
     app.post("/identificarse", function (req, res) {
         var seguro = app.get("crypto").createHmac('sha256', app.get('clave'))
@@ -68,7 +88,7 @@ module.exports = function (app, swig, gestorBD) {
 
     app.get('/desconectarse', function (req, res) {
         req.session.usuario = null;
-        res.send("Usuario desconectado");
+        res.redirect("/identificarse?mensaje=Desconexión realizada correctamente");
     })
 
     app.get('/user/list', function (req, res){

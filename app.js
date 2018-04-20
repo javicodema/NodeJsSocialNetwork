@@ -8,6 +8,20 @@ app.use(expressSession({
     resave: true,
     saveUninitialized: true
 }));
+// routerUsuarioSession
+var routerUsuarioSession = express.Router();
+routerUsuarioSession.use(function(req, res, next) {
+    console.log("routerUsuarioSession");
+    if ( req.session.usuario ) {
+        // dejamos correr la petición
+        next();
+    } else {
+        console.log("va a : "+req.session.destino)
+        res.redirect("/identificarse");
+    }
+});
+//Aplicar routerUsuarioSession
+app.use("/user",routerUsuarioSession);
 var crypto = require('crypto');
 app.use(express.static('public'));
 var bodyParser = require('body-parser');
@@ -26,7 +40,7 @@ app.set('clave','abcdefg');
 app.set('crypto',crypto);
 
 app.get('/', function (req, res) {
-    res.redirect('/registrarse');
+    res.redirect('/identificarse');
 })
 
 

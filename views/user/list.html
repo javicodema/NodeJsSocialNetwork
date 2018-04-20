@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "../base.html" %}
 {% block titulo %} Lista de usuarios{% endblock %}
 {% block contenido_principal %}
 <h2>Usuarios</h2>
@@ -31,6 +31,22 @@
             <div>
                 <td>{{usuario.email}}</td>
                 <td>{{usuario.nombre}}</td>
+                <td><button type="button" class="btn btn-info">Agregar amigo</button>
+                        <script>
+                            /*<![CDATA[*/
+                            $( "#sendButton[[${user.id}]]" ).click(function() {
+                                $.get( "/requests/add/[[${user.id}]]", function(){
+                                    $( "#sendButton[[${user.id}]]" ).attr("disabled",true);
+                                    $( "#sendButton[[${user.id}]]" ).text([[#{requestSent.message}]]);
+                                });
+                            });
+                        </script>
+                    </div>
+                        <button disabled=true type="button" th:id="${'pendingButton' + user.id}"
+                                class="btn btn-info" th:text="#{requestSent.message}">Pendiente</button>
+                </div>
+            </div>
+            </td>
             </div>
         </tr>
         {% endfor %}
