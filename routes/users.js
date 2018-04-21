@@ -18,7 +18,9 @@ module.exports = function (app, swig, gestorBD) {
                     var usuario = {
                         email: req.body.email,
                         nombre: req.body.name,
-                        password: seguro
+                        password: seguro,
+                        peticionesenviadas:["Amarillo","Azul"],
+                        peticionesrecibidas:[]
                     }
                     gestorBD.insertarUsuario(usuario, function (id) {
                         if (id == null) {
@@ -39,9 +41,9 @@ module.exports = function (app, swig, gestorBD) {
         var respuesta = swig.renderFile('views/login.html', {});
         res.send(respuesta);
     });
-    app.get("/agregar/:id", function (req, res) {
+    app.get("/user/agregar/:id", function (req, res) {
         var receptorId = gestorBD.mongo.ObjectID(req.params.id);
-        gestorBD.obtenerUsuarios(criterio, function(usuarios) {
+        gestorBD.obtenerUsuarios(receptorId, function(usuarios) {
             if (usuarios == null || usuarios.length == 0) {
                 res.redirect("/user/list" +
                     "?mensaje=No es posible agregar a este usuario"+
@@ -110,6 +112,7 @@ module.exports = function (app, swig, gestorBD) {
                 }
                 var respuesta = swig.renderFile('views/user/list.html',
                     {
+                        userActual:req.session.usuario,
                         usuarios: usuarios,
                         pgActual: pg,
                         pgUltima: pgUltima

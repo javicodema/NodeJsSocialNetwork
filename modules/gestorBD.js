@@ -30,14 +30,20 @@ module.exports = {
             if (err) {
                 funcionCallback(null);
             } else {
-                var collection = db.collection('peticiones');
-                collection.insert(peticion, function(err, result) {
+                var collection = db.collection('usuarios');
+                collection.update({ "email": peticion.emisor.email},{$push: {"peticionesenviadas": peticion.receptor}}, function(err, result) {
                     if (err) {
                         funcionCallback(null);
                     } else {
-                        funcionCallback(result.ops[0]._id);
+                        collection.update({ "email": peticion.receptor.email},{$push: {"peticionesrecibidas": peticion.emisor}}, function(err, result) {
+                            if (err) {
+                                funcionCallback(null);
+                            } else {
+                                funcionCallback(result);
+                            }
+                            db.close();
+                        });
                     }
-                    db.close();
                 });
             }
         });

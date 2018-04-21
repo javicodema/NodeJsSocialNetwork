@@ -3,15 +3,13 @@
 {% block contenido_principal %}
 <h2>Usuarios</h2>
 <form method="get" action="/user/list">
-    <div
-            class="input-group col-xs-8 col-sm-6 col-md-4 col-lg-5 pull-right">
-        <input type="text" class="search-query form-control"
-               placeholder="Nombre de la canción" name="busqueda"/>
+    <div class="input-group col-xs-8 col-sm-6 col-md-4 col-lg-5 pull-right">
+        <input type="text" class="search-query form-control" placeholder="Nombre del usuario" name="busqueda"/>
         <span class="input-group-btn">
-<button class="btn" type="submit">
-<span class="glyphicon glyphicon-search"></span>
-</button>
-</span>
+        <button class="btn" type="submit">
+        <span class="glyphicon glyphicon-search"></span>
+        </button>
+        </span>
     </div>
 </form>
 <p>Los usuarios que actualmente
@@ -31,22 +29,21 @@
             <div>
                 <td>{{usuario.email}}</td>
                 <td>{{usuario.nombre}}</td>
-                <td><button type="button" class="btn btn-info">Agregar amigo</button>
+                <td>
+                    {% if !userActual.peticionesenviadas.includes(usuario)%}
+                    <button type="button" id="sendButton{{usuario._id.toString()}}" class="btn btn-info">Agregar amigo</button>
                         <script>
-                            /*<![CDATA[*/
-                            $( "#sendButton[[${user.id}]]" ).click(function() {
-                                $.get( "/requests/add/[[${user.id}]]", function(){
-                                    $( "#sendButton[[${user.id}]]" ).attr("disabled",true);
-                                    $( "#sendButton[[${user.id}]]" ).text([[#{requestSent.message}]]);
+                            $( "#sendButton{{usuario._id.toString()}}" ).click(function() {
+                                $.get( "/user/agregar/{{usuario._id.toString()}}", function(){
+                                    $( "#sendButton{{usuario._id.toString()}}" ).attr("disabled",true);
+                                    $( "#sendButton{{usuario._id.toString()}}" ).text("Pendiente");
                                 });
                             });
                         </script>
-                    </div>
-                        <button disabled=true type="button" th:id="${'pendingButton' + user.id}"
-                                class="btn btn-info" th:text="#{requestSent.message}">Pendiente</button>
-                </div>
-            </div>
-            </td>
+                    {% else %}
+                    <button type="button" id="pendingButton{{usuario._id.toString()}}" class="btn btn-info">Pendiente</button>
+                    {% endif %}
+                </td>
             </div>
         </tr>
         {% endfor %}

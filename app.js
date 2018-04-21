@@ -35,7 +35,7 @@ require("./routes/users.js")(app, swig,gestorBD);
 
 // Variables
 app.set('port', 8080);
-app.set('db','mongodb://admin:sdi@ds241489.mlab.com:41489/socialnetwork');
+app.set('db','mongodb://admin:sdi@ds151259.mlab.com:51259/nodejssocialnetwork');
 app.set('clave','abcdefg');
 app.set('crypto',crypto);
 
