@@ -19,8 +19,7 @@ module.exports = function (app, swig, gestorBD) {
                         email: req.body.email,
                         nombre: req.body.name,
                         password: seguro,
-                        peticionesenviadas:["Amarillo","Azul"],
-                        peticionesrecibidas:[]
+                        peticionesrecibidas: []
                     }
                     gestorBD.insertarUsuario(usuario, function (id) {
                         if (id == null) {
@@ -51,9 +50,9 @@ module.exports = function (app, swig, gestorBD) {
             } else {
                 var peticion = {
                     emisor : req.session.usuario,
-                    receptor : usuarios
+                    receptor : usuarios[0]
                 }
-                gestorBD.insertarPeticion(peticion, function(id){
+                gestorBD.updateUsuario(peticion, function(id){
                     if (id == null) {
                         res.redirect("/user/list" +
                             "?mensaje=Error al insertar la petición"+

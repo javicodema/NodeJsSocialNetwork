@@ -25,24 +25,19 @@ module.exports = {
             }
         });
     },
-    insertarPeticion : function(peticion, funcionCallback) {
+    updateUsuario : function(peticion, funcionCallback) {
         this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
             if (err) {
                 funcionCallback(null);
             } else {
                 var collection = db.collection('usuarios');
-                collection.update({ "email": peticion.emisor.email},{$push: {"peticionesenviadas": peticion.receptor}}, function(err, result) {
+                collection.update({ "_id": peticion.receptor._id},{$push: {"peticionesrecibidas": peticion.emisor}, function(err, result) {
                     if (err) {
                         funcionCallback(null);
                     } else {
-                        collection.update({ "email": peticion.receptor.email},{$push: {"peticionesrecibidas": peticion.emisor}}, function(err, result) {
-                            if (err) {
-                                funcionCallback(null);
-                            } else {
-                                funcionCallback(result);
-                            }
-                            db.close();
-                        });
+                        funcionCallback(result);
+                    }
+                    db.close();
                     }
                 });
             }
