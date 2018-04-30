@@ -2,7 +2,100 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d6ff0671-01f0-4450-8076-76c04c29bd3a" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/node_modules/base64url/dist/.gitkeep" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/base64url/dist/base64url.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/base64url/dist/base64url.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/base64url/dist/pad-string.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/base64url/dist/pad-string.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/base64url/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/base64url/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/base64url/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/buffer-equal-constant-time/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/buffer-equal-constant-time/.travis.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/buffer-equal-constant-time/LICENSE.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/buffer-equal-constant-time/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/buffer-equal-constant-time/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/buffer-equal-constant-time/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/buffer-equal-constant-time/test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ecdsa-sig-formatter/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ecdsa-sig-formatter/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ecdsa-sig-formatter/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ecdsa-sig-formatter/src/ecdsa-sig-formatter.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/ecdsa-sig-formatter/src/param-bytes-for-alg.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonwebtoken/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonwebtoken/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonwebtoken/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonwebtoken/decode.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonwebtoken/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonwebtoken/lib/JsonWebTokenError.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonwebtoken/lib/NotBeforeError.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonwebtoken/lib/TokenExpiredError.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonwebtoken/lib/timespan.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonwebtoken/node_modules/ms/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonwebtoken/node_modules/ms/license.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonwebtoken/node_modules/ms/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonwebtoken/node_modules/ms/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonwebtoken/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonwebtoken/sign.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jsonwebtoken/verify.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jwa/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jwa/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jwa/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jwa/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jwa/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jws/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jws/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jws/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jws/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jws/lib/data-stream.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jws/lib/sign-stream.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jws/lib/tostring.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jws/lib/verify-stream.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jws/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/jws/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.includes/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.includes/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.includes/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.includes/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isboolean/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isboolean/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isboolean/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isboolean/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isinteger/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isinteger/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isinteger/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isinteger/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isnumber/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isnumber/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isnumber/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isnumber/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isplainobject/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isplainobject/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isplainobject/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isplainobject/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isstring/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isstring/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isstring/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.isstring/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.once/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.once/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.once/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/lodash.once/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/xtend/.jshintrc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/xtend/.npmignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/xtend/LICENCE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/xtend/Makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/xtend/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/xtend/immutable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/xtend/mutable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/xtend/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node_modules/xtend/test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/modules/gestorBD.js" beforeDir="false" afterPath="$PROJECT_DIR$/modules/gestorBD.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/user/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user/list.html" afterDir="false" />
     </list>
@@ -21,8 +114,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="503">
-              <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
+            <state relative-caret-position="192">
+              <caret line="78" column="18" lean-forward="true" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -30,7 +123,7 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
+            <state relative-caret-position="459">
               <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
             </state>
           </provider>
@@ -39,8 +132,8 @@
       <file leaf-file-name="users.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/routes/users.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="55" column="37" lean-forward="true" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
+            <state relative-caret-position="549">
+              <caret line="66" column="7" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -48,8 +141,8 @@
       <file leaf-file-name="list.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/user/list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="42" column="30" lean-forward="true" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
+            <state relative-caret-position="1190">
+              <caret line="70" selection-start-line="70" selection-end-line="70" />
             </state>
           </provider>
         </entry>
@@ -57,8 +150,8 @@
       <file leaf-file-name="gestorBD.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/gestorBD.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="33" column="113" selection-start-line="33" selection-start-column="113" selection-end-line="33" selection-end-column="113" />
+            <state relative-caret-position="119">
+              <caret line="99" column="2" selection-start-line="99" selection-start-column="2" selection-end-line="99" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -108,16 +201,16 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="950" />
-    <option name="width" value="979" />
-    <option name="height" value="1040" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -135,21 +228,11 @@
               <item name="NodeJsSocialNetwork" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="NodeJsSocialNetwork" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NodeJsSocialNetwork" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="NodeJsSocialNetwork" type="b2602c69:ProjectViewProjectNode" />
-              <item name="NodeJsSocialNetwork" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-              <item name="user" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -205,23 +288,24 @@
       <workItem from="1524230797028" duration="6775000" />
       <workItem from="1524315457172" duration="8312000" />
       <workItem from="1524812623632" duration="4258000" />
+      <workItem from="1525086323020" duration="1263000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31771000" />
+    <option name="totallyTimeSpent" value="33034000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.119791664" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1193265" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50208336" side_tool="true" weight="0.32838982" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info id="npm" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49791667" visible="true" weight="0.32421342" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49791667" visible="true" weight="0.32283464" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -242,6 +326,41 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/user/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="30" lean-forward="true" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/gestorBD.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="2" lean-forward="true" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="740">
@@ -483,36 +602,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
+        <state relative-caret-position="459">
           <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="37" column="33" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/user/list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="42" column="30" lean-forward="true" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
+        <state relative-caret-position="1190">
+          <caret line="70" selection-start-line="70" selection-end-line="70" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/gestorBD.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="33" column="113" selection-start-line="33" selection-start-column="113" selection-end-line="33" selection-end-column="113" />
+        <state relative-caret-position="119">
+          <caret line="99" column="2" selection-start-line="99" selection-start-column="2" selection-end-line="99" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="78" column="18" lean-forward="true" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/users.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="55" column="37" lean-forward="true" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
+        <state relative-caret-position="549">
+          <caret line="66" column="7" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
         </state>
       </provider>
     </entry>

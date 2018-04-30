@@ -32,12 +32,12 @@ module.exports = {
             } else {
                 var collection = db.collection('usuarios');
                 collection.update({ "_id": peticion.receptor._id},{$push: {"peticionesrecibidas": peticion.emisor}, function(err, result) {
-                    if (err) {
-                        funcionCallback(null);
-                    } else {
-                        funcionCallback(result);
-                    }
-                    db.close();
+                        if (err) {
+                            funcionCallback(null);
+                        } else {
+                            funcionCallback(result);
+                        }
+                        db.close();
                     }
                 });
             }
@@ -66,6 +66,22 @@ module.exports = {
             } else {
                 var collection = db.collection('usuarios');
                 collection.insert(usuario, function(err, result) {
+                    if (err) {
+                        funcionCallback(null);
+                    } else {
+                        funcionCallback(result.ops[0]._id);
+                    }
+                    db.close();
+                });
+            }
+        });
+    },insertarMensaje : function(mensaje, funcionCallback) {
+        this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+            if (err) {
+                funcionCallback(null);
+            } else {
+                var collection = db.collection('mensajes');
+                collection.insert(mensaje, function(err, result) {
                     if (err) {
                         funcionCallback(null);
                     } else {

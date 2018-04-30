@@ -19,7 +19,8 @@ module.exports = function (app, swig, gestorBD) {
                         email: req.body.email,
                         nombre: req.body.name,
                         password: seguro,
-                        peticionesrecibidas: []
+                        peticionesenviadas:["Amarillo","Azul"],
+                        peticionesrecibidas:[]
                     }
                     gestorBD.insertarUsuario(usuario, function (id) {
                         if (id == null) {
@@ -105,10 +106,13 @@ module.exports = function (app, swig, gestorBD) {
             if (usuarios == null) {
                 res.send("Error al listar ");
             } else {
-                var pgUltima = total / 4;
-                if (total % 4 > 0) { // Sobran decimales
+                var pgUltima = total / 5;
+                if (total % 5 > 0) { // Sobran decimales
                     pgUltima = pgUltima + 1;
                 }
+                console.log("pgActual: "+pg);
+                console.log("pgUltima: "+pgUltima);
+                console.log("total: "+total);
                 var respuesta = swig.renderFile('views/user/list.html',
                     {
                         userActual:req.session.usuario,
