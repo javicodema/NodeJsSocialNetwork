@@ -96,7 +96,7 @@ module.exports = function (app, swig, gestorBD) {
     app.get('/user/list', function (req, res){
         var criterio = {};
         if (req.query.busqueda != null) {
-            criterio = {"nombre": {$regex: ".*" + req.query.busqueda + ".*"}};
+            criterio = {$or : [{"nombre": {$regex: ".*" + req.query.busqueda + ".*"}},{"email":{$regex: ".*" + req.query.busqueda + ".*"}}]};
         }
         var pg = parseInt(req.query.pg); // Es String !!!
         if (req.query.pg == null) { // Puede no venir el param
@@ -106,17 +106,15 @@ module.exports = function (app, swig, gestorBD) {
             if (usuarios == null) {
                 res.send("Error al listar ");
             } else {
+                total = usuarios.length;
                 var pgUltima = total / 5;
                 if (total % 5 > 0) { // Sobran decimales
                     pgUltima = pgUltima + 1;
                 }
-                console.log("pgActual: "+pg);
-                console.log("pgUltima: "+pgUltima);
-                console.log("total: "+total);
                 var respuesta = swig.renderFile('views/user/list.html',
                     {
                         userActual:req.session.usuario,
-                        usuarios: usuarios,
+                        usuarios: usuarios.slice(0,5),
                         pgActual: pg,
                         pgUltima: pgUltima
                     });
