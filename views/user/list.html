@@ -30,18 +30,20 @@
                 <td>{{usuario.email}}</td>
                 <td>{{usuario.nombre}}</td>
                 <td>
+                    {% if !usuario.amistades.includes(userActual)%}
                     {% if !usuario.peticionesrecibidas.includes(userActual)%}
                     <button type="button" id="sendButton{{usuario._id.toString()}}" class="btn btn-info">Agregar amigo</button>
                         <script>
                             $( "#sendButton{{usuario._id.toString()}}" ).click(function() {
+                                $( "#sendButton{{usuario._id.toString()}}" ).attr("disabled",true);
+                                $( "#sendButton{{usuario._id.toString()}}" ).text("Pendiente");
                                 $.get( "/user/agregar/{{usuario._id.toString()}}", function(){
-                                    $( "#sendButton{{usuario._id.toString()}}" ).attr("disabled",true);
-                                    $( "#sendButton{{usuario._id.toString()}}" ).text("Pendiente");
                                 });
                             });
                         </script>
                     {% else %}
                     <button type="button" id="pendingButton{{usuario._id.toString()}}" class="btn btn-info" disabled="true">Pendiente</button>
+                    {% endif %}
                     {% endif %}
                 </td>
             </div>

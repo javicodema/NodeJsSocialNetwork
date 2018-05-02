@@ -25,6 +25,7 @@
       </button>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
+      {% if userActual!=null %}
       <ul class="nav navbar-nav">
         <li id="users-menu" class="dropdown"><a class="dropdown-toggle"
                                                 data-toggle="dropdown" href="#" >
@@ -39,21 +40,25 @@
           Gestion de Amistades <span class="caret"></span>
         </a>
           <ul class="dropdown-menu">
-            <li><a id="requestsList" href="/requests/received">Ver solicitudes</a></li>
+            <li><a id="requestsList" href="/user/requests">Ver solicitudes</a></li>
             <li><a id="friendsList" href="/user/friends" >Ver
               amigos</a></li>
           </ul></li>
       </ul>
+      {% endif %}
       <ul class="nav navbar-nav navbar-right">
+        {% if !userActual!=null %}
         <li><a href="/registrarse"> <span
                 class="glyphicon glyphicon-user"></span> Registrate
         </a></li>
         <li><a href="/identificarse"> <span
                 class="glyphicon glyphicon-log-in"></span> Identificate
         </a></li>
+        {% else %}
         <li><a id="logout" href="/desconectarse"> <span
                 class="glyphicon glyphicon-log-out"></span> Desconectar
         </a></li>
+        {% endif %}
       </ul>
     </div>
 

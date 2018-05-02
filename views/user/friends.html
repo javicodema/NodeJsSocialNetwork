@@ -1,36 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head th:replace="fragments/head" />
-<body>
-	<!-- Barra de Navegación superior -->
-	<nav th:replace="fragments/nav" />
-	<div class="container">
-
-		<h2 th:text="#{amiwistitle.message}">Amigos</h2>
-		<p th:text="#{amiwis.message}">Los amigos del usuario en sesión son:</p>
+{% extends "../base.html" %}
+{% block titulo %} Lista de Amigos{% endblock %}
+{% block contenido_principal %}
+		<h2>Amigos</h2>
+		<p>Los amigos del usuario en sesión son:</p>
 		<div class="table-responsive">
 			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th>Email</th>
-						<th th:text="#{name.message}">Nombre</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="user : ${friendsList}">
-						<div>
-						<td th:text="${user.email}">Email</td>
-						<td th:text="${user.name}">Nombre del usuario</td>
-						<td>
-						<a th:id="${'postsFriend'+user.id}" th:href="${'/post/list/' + user.id}" th:text="#{seePA.message}">Ver publicaciones</a>
-						</td>
-					</tr>
+				{% for amistad in amistades %}
+				<tr>
+					{% if userActual===amistad.receptor %}
+					<td>{{amistad.emisor}}</td>
+					{% else %}
+					<td>{{amistad.receptor}}</td>
+					{% endif %}
+				</tr>
+				{% endfor %}
 				</tbody>
 			</table>
 		</div>
-		<footer th:replace="fragments/pagination" />
+<div class="row text-center">
+	<ul class="pagination">
+		<!-- Primera -->
+		<li class="page-item" >
+			<a class="page-link" href="/user/friends?pg=1" >Primera</a>
+		</li>
 
-	</div>
-	<footer th:replace="fragments/footer" />
-</body>
-</html>
+		<!-- Anterior (si la hay ) -->
+		{% if pgActual-1 >= 1 %}
+		<li class="page-item">
+			<a class="page-link" href="/user/friends?pg={{ pgActual -1 }}" >{{ pgActual -1 }}</a>
+		</li>
+		{% endif %}
+
+		<!-- Actual -->
+		<li class="page-item active" >
+			<a class="page-link" href="/user/friends?pg={{ pgActual }}">{{ pgActual }}</a>
+		</li>
+
+		<!-- Siguiente (si la hay) -->
+		{% if pgActual+1 <= pgUltima %}
+		<li class="page-item">
+			<a class="page-link" href="/user/friends?pg={{ pgActual+1 }}" >{{ pgActual+1 }}</a>
+		</li>
+		{% endif %}
+
+		<!-- Última -->
+		<li class="page-item" >
+			<a class="page-link" href="/user/friends?pg={{ pgUltima }}" >Última</a>
+		</li>
+	</ul>
+</div>
+
+{% endblock %}

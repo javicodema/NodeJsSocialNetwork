@@ -1,6 +1,8 @@
 module.exports = function (app, swig, gestorBD) {
     app.get("/registrarse", function (req, res) {
-        var respuesta = swig.renderFile('views/signup.html', {});
+        var respuesta = swig.renderFile('views/signup.html', {
+            userActual: null
+        });
         res.send(respuesta);
     });
 
@@ -37,7 +39,9 @@ module.exports = function (app, swig, gestorBD) {
         }
     })
     app.get("/identificarse", function (req, res) {
-        var respuesta = swig.renderFile('views/login.html', {});
+        var respuesta = swig.renderFile('views/login.html', {
+            userActual:null
+        });
         res.send(respuesta);
     });
     app.get("/user/agregar/:id", function (req, res) {
@@ -52,7 +56,7 @@ module.exports = function (app, swig, gestorBD) {
                     emisor : req.session.usuario,
                     receptor : usuarios[0]
                 }
-                gestorBD.updateUsuario(peticion, function(id){
+                gestorBD.insertarPeticion(peticion, function(id){
                     if (id == null) {
                         res.redirect("/user/list" +
                             "?mensaje=Error al insertar la petición"+
@@ -64,7 +68,30 @@ module.exports = function (app, swig, gestorBD) {
             }
         });
     });
-
+    app.get("/user/aceptar/:id", function (req, res) {
+        var id = gestorBD.mongo.ObjectID(req.params.id);
+        gestorBD.obtenerPeticiones(id, function(peticiones) {
+            if (peticiones == null || peticiones.length == 0) {
+                res.redirect("/user/requests" +
+                    "?mensaje=No es posible agregar a este usuario"+
+                    "&tipoMensaje=alert-danger ");
+            } else {
+                var amistad = {
+                    receptor : req.session.usuario,
+                    emisor : peticiones[0].emisor
+                }
+                gestorBD.insertarAmistad(amistad, function(id){
+                    if (id == null) {
+                        res.redirect("/user/requests" +
+                            "?mensaje=Error al formalizar la amistad"+
+                            "&tipoMensaje=alert-danger ");
+                    } else {
+                        res.redirect("/user/requests?mensaje=Usuario agregado correctamente&tipoMensaje=alert-success");
+                    }
+                });
+            }
+        });
+    });
     app.post("/identificarse", function (req, res) {
         var seguro = app.get("crypto").createHmac('sha256', app.get('clave'))
             .update(req.body.password).digest('hex');
@@ -105,8 +132,8 @@ module.exports = function (app, swig, gestorBD) {
             if (usuarios == null) {
                 res.send("Error al listar ");
             } else {
-                var pgUltima = total / 4;
-                if (total % 4 > 0) { // Sobran decimales
+                var pgUltima = total / 5;
+                if (total % 5 > 0) { // Sobran decimales
                     pgUltima = pgUltima + 1;
                 }
                 var respuesta = swig.renderFile('views/user/list.html',
@@ -120,7 +147,60 @@ module.exports = function (app, swig, gestorBD) {
             }
         });
     })
-
+    app.get('/user/requests', function (req, res){
+        var criterio={
+            "receptor":req.session.usuario
+        }
+        var pg = parseInt(req.query.pg); // Es String !!!
+        if (req.query.pg == null) { // Puede no venir el param
+            pg = 1;
+        }
+        gestorBD.obtenerPeticionesPg(criterio, pg, function (peticiones, total) {
+            if (peticiones == null) {
+                res.send("Error al listar ");
+            } else {
+                var pgUltima = total / 5;
+                if (total % 5 > 0) { // Sobran decimales
+                    pgUltima = pgUltima + 1;
+                }
+                var respuesta = swig.renderFile('views/user/requests.html',
+                    {
+                        userActual:req.session.usuario,
+                        peticiones: peticiones,
+                        pgActual: pg,
+                        pgUltima: pgUltima
+                    });
+                res.send(respuesta);
+            }
+        });
+    })
+    app.get('/user/friends', function (req, res){
+        var user={
+            "email":req.session.usuario
+        }
+        var pg = parseInt(req.query.pg); // Es String !!!
+        if (req.query.pg == null) { // Puede no venir el param
+            pg = 1;
+        }
+        gestorBD.obtenerAmistadesPg(user, pg, function (amistades, total) {
+            if (amistades == null) {
+                res.send("Error al listar ");
+            } else {
+                var pgUltima = total / 5;
+                if (total % 5 > 0) { // Sobran decimales
+                    pgUltima = pgUltima + 1;
+                }
+                var respuesta = swig.renderFile('views/user/friends.html',
+                    {
+                        amistades: amistades,
+                        pgActual: pg,
+                        pgUltima: pgUltima,
+                        userActual: req.session.usuario
+                    });
+                res.send(respuesta);
+            }
+        });
+    })
 
 
 

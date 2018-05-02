@@ -1,0 +1,66 @@
+{% extends "../base.html" %}
+{% block titulo %} Lista de Peticiones{% endblock %}
+{% block contenido_principal %}
+		<h2>Solicitudes</h2>
+		<p>Las peticiones del usuario son
+			las siguientes:</p>
+		<div class="table-responsive">
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Enviada por:</th>
+						<th class="col-md-1"></th>
+
+					</tr>
+				</thead>
+				<tbody id="requestsTable">
+				{% for peticion in peticiones %}
+					<tr>
+						<td>{{peticion.emisor}}</td>
+						<td><button type="button" id="acceptButton{{peticion._id.toString()}}" class="btn btn-info">Aceptar</button></td>
+						<script>
+                            $( "#acceptButton{{peticion._id.toString()}}" ).click(function() {
+                                $( "#acceptButton{{peticion._id.toString()}}" ).attr("disabled",true);
+                                $( "#acceptButton{{peticion._id.toString()}}" ).text("Aceptada");
+                                $.get( "/user/aceptar/{{peticion._id.toString()}}", function(){
+                                });
+                            });
+						</script>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+<div class="row text-center">
+	<ul class="pagination">
+		<!-- Primera -->
+		<li class="page-item" >
+			<a class="page-link" href="/user/requests?pg=1" >Primera</a>
+		</li>
+
+		<!-- Anterior (si la hay ) -->
+		{% if pgActual-1 >= 1 %}
+		<li class="page-item">
+			<a class="page-link" href="/user/requests?pg={{ pgActual -1 }}" >{{ pgActual -1 }}</a>
+		</li>
+		{% endif %}
+
+		<!-- Actual -->
+		<li class="page-item active" >
+			<a class="page-link" href="/user/requests?pg={{ pgActual }}">{{ pgActual }}</a>
+		</li>
+
+		<!-- Siguiente (si la hay) -->
+		{% if pgActual+1 <= pgUltima %}
+		<li class="page-item">
+			<a class="page-link" href="/user/requests?pg={{ pgActual+1 }}" >{{ pgActual+1 }}</a>
+		</li>
+		{% endif %}
+
+		<!-- Última -->
+		<li class="page-item" >
+			<a class="page-link" href="/user/requests?pg={{ pgUltima }}" >Última</a>
+		</li>
+	</ul>
+</div>
+{% endblock %}
