@@ -12,7 +12,7 @@ module.exports = {
             } else {
                 var collection = db.collection('usuarios');
                 collection.count(function(err, count){
-                    collection.find(criterio).skip( (pg-1)*5 ).limit( 5 )
+                    collection.find(criterio).skip( (pg-1)*5 )
                         .toArray(function(err, usuarios) {
                             if (err) {
                                 funcionCallback(null);
@@ -197,6 +197,22 @@ module.exports = {
                         funcionCallback(null);
                     } else {
                         funcionCallback(peticiones);
+                    }
+                    db.close();
+                });
+            }
+        });
+    },insertarMensaje : function(mensaje, funcionCallback) {
+        this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+            if (err) {
+                funcionCallback(null);
+            } else {
+                var collection = db.collection('mensajes');
+                collection.insert(mensaje, function(err, result) {
+                    if (err) {
+                        funcionCallback(null);
+                    } else {
+                        funcionCallback(result.ops[0]._id);
                     }
                     db.close();
                 });
