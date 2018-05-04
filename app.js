@@ -84,15 +84,32 @@ app.get('/', function (req, res) {
     res.redirect('/identificarse');
 })
 app.get('/secreto/admin/db/borrar', function(req, res){
-    gestorBD.eliminarTodo(function(canciones){
-        if ( canciones == null ){
+    gestorBD.eliminarTodo(function(respuesta){
+        if ( respuesta == null ){
             res.redirect("/identificarse?mensaje=Error al borrar&tipoMensaje=alert-danger ")
         } else {
             res.redirect("/identificarse?mensaje=-Todas las colecciones borradas&tipoMensaje=alert-success ")
         }
     });
 })
-
+app.get('/secreto/admin/db/crear', function(req, res){
+    for(i=0; i<10; i++)
+    {
+        var user={
+            nombre: "user"+i,
+            email: "user"+i+"@mail.com",
+            password: app.get("crypto").createHmac('sha256', app.get('clave'))
+                .update("123456").digest('hex')
+        }
+        gestorBD.insertarUsuario(user,function (respuesta) {
+            if (respuesta == null) {
+                res.redirect("/identificarse?mensaje=Error al crear&tipoMensaje=alert-danger ")
+            } else {
+                res.redirect("/identificarse?mensaje=-Usuarios creados&tipoMensaje=alert-success ")
+            }
+        });
+    }
+})
 app.use( function (err, req, res, next ) {
     console.log("Error producido: " + err); //we log the error in our db
     if (! res.headersSent) {
