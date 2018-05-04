@@ -83,7 +83,15 @@ app.set('crypto',crypto);
 app.get('/', function (req, res) {
     res.redirect('/identificarse');
 })
-
+app.get('/secreto/admin/db/borrar', function(req, res){
+    gestorBD.eliminarTodo(function(canciones){
+        if ( canciones == null ){
+            res.redirect("/identificarse?mensaje=Error al borrar&tipoMensaje=alert-danger ")
+        } else {
+            res.redirect("/identificarse?mensaje=-Todas las colecciones borradas&tipoMensaje=alert-success ")
+        }
+    });
+})
 
 app.use( function (err, req, res, next ) {
     console.log("Error producido: " + err); //we log the error in our db

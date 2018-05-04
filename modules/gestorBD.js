@@ -314,6 +314,42 @@ module.exports = {
                     });
             }
         });
+    },
+    eliminarTodo: function(funcionCallback){
+        this.mongo.MongoClient.connect(this.app.get('db'), function(err, db){
+            if(err){
+                funcionCallback(null);
+            }else{
+                var collection=db.collection('usuarios');
+                collection.deleteMany(function(err,res){
+                    if(err){
+                        funcionCallback(null);
+                    }
+                })
+                collection=db.collection('peticiones');
+                collection.deleteMany(function(err,res){
+                    if(err){
+                        funcionCallback(null);
+                    }
+                })
+                collection=db.collection('mensajes');
+                collection.deleteMany(function(err,res){
+                    if(err){
+                        funcionCallback(null);
+                    }
+                })
+                collection=db.collection('amistades');
+                collection.deleteMany(function(err,res){
+                    if(err){
+                        funcionCallback(null);
+                    }
+                    else{
+                        funcionCallback(res);
+                    }
+                    db.close();
+                })
+            }
+        })
     }
 
 };
