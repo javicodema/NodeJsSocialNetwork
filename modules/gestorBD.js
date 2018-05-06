@@ -71,7 +71,7 @@ module.exports = {
                 funcionCallback(null);
             } else {
                 var collection = db.collection('usuarios');
-                collection.find({"amistades": user.email}, {"_id": 1})
+                collection.find({"amistades": user.email}, {"email": 1, "_id":0})
                     .toArray(function (err, amigos) {
                         if (err) {
                             funcionCallback(null);

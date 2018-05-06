@@ -1,0 +1,53 @@
+<div id="widget-mensajes" >
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Mensaje</th>
+            <th>Leído</th>
+            <th class="col-md-1"></th>
+        </tr>
+        </thead>
+        <tbody id="tablaCuerpo">
+
+        </tbody>
+    </table>
+</div>
+
+<script>
+    var url = new URL(window.location.href);
+    var usuario = url.searchParams.get("usuario");
+    window.history.pushState("", "", "/cliente.html?w=mensajes&usuario="+usuario);
+    var mensajes;
+    function cargarMensajes(){
+        $.ajax({
+            url: URLbase + "/mensaje?usuario="+usuario,
+            type: "GET",
+            data: { },
+            dataType: 'json',
+            headers: { "token": token },
+            success: function(respuesta) {
+                mensajes = respuesta;
+                actualizarTabla(mensajes);
+            },
+            error : function (error){
+                $( "#contenedor-principal" ).load("widget-login.html");
+            }
+        });
+    }
+    function actualizarTabla(mensajesMostrar){
+        $( "#tablaCuerpo" ).empty(); // Vaciar la tabla
+        for (i = 0; i < mensajesMostrar.length; i++) {
+            $( "#tablaCuerpo" ).append(
+                "<tr id="+mensajesMostrar[i]._id+">"+
+                "<td>"+mensajesMostrar[i].texto+"</td>" +
+                "<td>"+mensajesMostrar[i].leido+"</td>" +
+                "</tr>" );
+            // Mucho cuidado con las comillas del eliminarCancion
+            //la id tiene que ir entre comillas ' '
+        }
+    }
+
+
+    cargarAmigos();
+
+</script>
