@@ -33,6 +33,7 @@
             success: function(respuesta) {
                 console.log(respuesta.token); // <- Prueba
                 token = respuesta.token;
+                Cookies.set('emailUser', $("#email").val() );
                 Cookies.set('token', respuesta.token);
                 $( "#contenedor-principal" ).load( "widget-amigos.html");
             },

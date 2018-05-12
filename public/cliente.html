@@ -39,6 +39,7 @@
 <script>
     var token;
     var URLbase = "http://localhost:8080/api";
+    var intervalFunc;
     $( "#contenedor-principal" ).load( "widget-login.html");
     if ( Cookies.get('token') != null ){
         token = Cookies.get('token');
@@ -46,21 +47,25 @@
         var w = url.searchParams.get("w");
         switch(w){
             case "login":
+                clearInterval(intervalFunc);
                 $( "#contenedor-principal" ).load("widget-login.html");
                 break;
             case  "amigos":
+                clearInterval(intervalFunc);
                 $( "#contenedor-principal" ).load("widget-amigos.html");
                 break;
             case "mensajes":
                 $( "#contenedor-principal" ).load("widget-mensajes.html");
                 break;
             default:
-                $( "#contenedor-principal" ).load( "widget-amigos.html");
+                clearInterval(intervalFunc);
+                $( "#contenedor-principal" ).load( "widget-login.html");
         }
 
     }
 
     function widgetAmigos(){
+        clearInterval(intervalFunc);
         $( "#contenedor-principal" ).load( "widget-amigos.html");
     }
 

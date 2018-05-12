@@ -1,4 +1,16 @@
 <div id="widget-mensajes" >
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="agregar-mensaje">Mensaje:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="agregar-mensaje"
+                   placeholder="Inserte su mensaje" id="agregar-mensaje" />
+        </div>
+    </div>
+    <div class="col-sm-offset-2 col-sm-10">
+        <button type="button" class="btn btn-primary" id="boton-enviar"
+                onclick="enviarMensaje()">Enviar</button>
+    </div>
+
     <table class="table table-hover">
         <thead>
         <tr>
@@ -16,10 +28,12 @@
 
 <script>
     var url = new URL(window.location.href);
-    console.log(url);
     var usuario = url.searchParams.get("usuario");
     window.history.pushState("", "", "/cliente.html?w=mensajes&usuario="+usuario);
     var mensajes;
+    intervalFunc = setInterval(function() {
+        cargarMensajes();
+    }, 5000);
     function cargarMensajes(){
         $.ajax({
             url: URLbase + "/mensaje?usuario="+usuario,
@@ -32,7 +46,29 @@
                 actualizarTabla(mensajes);
             },
             error : function (error){
+                clearInterval(intervalFunc);
                 $( "#contenedor-principal" ).load("widget-login.html");
+            }
+        });
+    }
+
+    function enviarMensaje( ) {
+        $.ajax({
+            url: URLbase + "/mensaje",
+            type: "POST",
+            data: {
+                texto : $("#agregar-mensaje").val(),
+                emisor: Cookies.get("emailUser") ,
+                destino:usuario,
+            },
+            dataType: 'json',
+            headers: { "token": token },
+            success: function(respuesta) {
+                cargarMensajes();
+            },
+            error : function (error){
+                clearInterval(intervalFunc);
+                $( "#contenedor-principal" ).load("widget-mensajes.html");
             }
         });
     }
@@ -51,9 +87,7 @@
     }
 
 
-    setInterval(function() {
-        cargarMensajes();
-    }, 5000);
+
 
 
     cargarMensajes();
