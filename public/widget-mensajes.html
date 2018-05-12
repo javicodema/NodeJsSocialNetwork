@@ -4,6 +4,7 @@
         <tr>
             <th>Mensaje</th>
             <th>Leído</th>
+            <th>Emisor</th>
             <th class="col-md-1"></th>
         </tr>
         </thead>
@@ -15,6 +16,7 @@
 
 <script>
     var url = new URL(window.location.href);
+    console.log(url);
     var usuario = url.searchParams.get("usuario");
     window.history.pushState("", "", "/cliente.html?w=mensajes&usuario="+usuario);
     var mensajes;
@@ -41,6 +43,7 @@
                 "<tr id="+mensajesMostrar[i]._id+">"+
                 "<td>"+mensajesMostrar[i].texto+"</td>" +
                 "<td>"+mensajesMostrar[i].leido+"</td>" +
+                "<td>"+mensajesMostrar[i].emisor+"</td>"+
                 "</tr>" );
             // Mucho cuidado con las comillas del eliminarCancion
             //la id tiene que ir entre comillas ' '
@@ -48,6 +51,11 @@
     }
 
 
-    cargarAmigos();
+    setInterval(function() {
+        cargarMensajes();
+    }, 5000);
+
+
+    cargarMensajes();
 
 </script>

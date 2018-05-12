@@ -38,7 +38,7 @@
         for (i = 0; i < amigosMostrar.length; i++) {
             $( "#tablaCuerpo" ).append(
                 "<tr id="+amigosMostrar[i].email+">"+
-                "<td>"+amigosMostrar[i].email+"</td>" +
+                "<td> <a onclick=mensajes('"+amigosMostrar[i].email+"')>"+amigosMostrar[i].email+"</a></td>" +
                 "</tr>" );
             // Mucho cuidado con las comillas del eliminarCancion
             //la id tiene que ir entre comillas ' '
@@ -60,5 +60,12 @@
         }
         actualizarTabla(amigosFiltrados);
     });
+
+
+    function mensajes(email) {
+        emailUser = email;
+        window.history.pushState("", "", "/cliente.html?w=mensajes&usuario="+emailUser);
+        $( "#contenedor-principal" ).load( "widget-mensajes.html");
+    }
 
 </script>

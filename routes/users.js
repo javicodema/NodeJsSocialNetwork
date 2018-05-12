@@ -134,7 +134,11 @@ module.exports = function (app, swig, gestorBD) {
             if (usuarios == null) {
                 res.send("Error al listar ");
             } else {
-                total = usuarios.length;
+                total = 0;
+                if(pg!=1){
+                    total = 5*(pg-1);
+                }
+                total += usuarios.length;
                 var pgUltima = total / 5;
                 if (total % 5 > 0) { // Sobran decimales
                     pgUltima = pgUltima + 1;

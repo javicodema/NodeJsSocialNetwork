@@ -1,0 +1,39 @@
+<div id="widget-agregar" >
+    <div class="form-group">
+        <label class="control-label col-sm-2" for="agregar-mensaje">Mensaje:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="agregar-mensaje"
+                   placeholder="Inserte su mensaje" id="agregar-mensaje" />
+        </div>
+    </div>
+    <div class="col-sm-offset-2 col-sm-10">
+        <button type="button" class="btn btn-primary" id="boton-enviar"
+                onclick="enviarMensaje()">Enviar</button>
+    </div>
+</div>
+
+<script>
+    var url = new URL(window.location.href);
+    var usuario = url.searchParams.get("usuario");
+    function enviarMensaje( ) {
+        $.ajax({
+            url: URLbase + "/mensaje",
+            type: "POST",
+            data: {
+                texto : $("#agregar-mensaje").val(),
+                emisor: ,
+                destino: ,
+            },
+            dataType: 'json',
+            headers: { "token": token },
+            success: function(respuesta) {
+                console.log(respuesta); // <-- Prueba
+                $( "#contenedor-principal" ).load( "widget-mensajes.html");
+
+            },
+            error : function (error){
+                $( "#contenedor-principal" ).load("widget-login.html");
+            }
+        });
+    }
+</script>
