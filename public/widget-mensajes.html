@@ -32,7 +32,7 @@
     window.history.pushState("", "", "/cliente.html?w=mensajes&usuario="+usuario);
     var mensajes;
     intervalFunc = setInterval(function() {
-        cargarMensajes();
+        actualizarTabla(mensajes);
     }, 200);
     function cargarMensajes(){
         $.ajax({
