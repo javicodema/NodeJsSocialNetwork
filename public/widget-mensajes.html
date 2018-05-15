@@ -75,15 +75,34 @@
     function actualizarTabla(mensajesMostrar){
         $( "#tablaCuerpo" ).empty(); // Vaciar la tabla
         for (i = 0; i < mensajesMostrar.length; i++) {
+            if(mensajesMostrar[i].emisor===usuario) {
+                marcarLeido(mensajesMostrar[i]);
+            }
             $( "#tablaCuerpo" ).append(
                 "<tr id="+mensajesMostrar[i]._id+">"+
                 "<td>"+mensajesMostrar[i].texto+"</td>" +
                 "<td>"+mensajesMostrar[i].leido+"</td>" +
                 "<td>"+mensajesMostrar[i].emisor+"</td>"+
                 "</tr>" );
-            // Mucho cuidado con las comillas del eliminarCancion
-            //la id tiene que ir entre comillas ' '
         }
+    }
+    function marcarLeido(mensaje){
+        $.ajax({
+            url: URLbase + "/mensaje/"+mensaje._id.toString(),
+            type: "PUT",
+            data: {
+                leido: true
+            },
+            dataType: 'json',
+            headers: { "token": token },
+            success : function(res){
+                cargarMensajes();
+            },
+            error : function (error){
+                clearInterval(intervalFunc);
+                $( "#contenedor-principal" ).load("widget-mensajes.html");
+            }
+        });
     }
 
 
