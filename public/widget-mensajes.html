@@ -64,6 +64,7 @@
             dataType: 'json',
             headers: { "token": token },
             success: function(respuesta) {
+                $("#agregar-mensaje").val("");
                 cargarMensajes();
             },
             error : function (error){

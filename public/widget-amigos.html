@@ -40,7 +40,7 @@
             $( "#tablaCuerpo" ).append(
                 "<tr id="+amigosMostrar[i].email+">"+
                 "<td> <a onclick=mensajes('"+amigosMostrar[i].email+"')>"+amigosMostrar[i].email+"</a></td>" +
-                "<td> </td>" +
+                "<td id='numeroMensajes"+i+"'></td>" +
                 "</tr>" );
         }
     }
@@ -60,7 +60,6 @@
         }
         actualizarTabla(amigosFiltrados);
     });
-
 
     function mensajes(email) {
         emailUser = email;
