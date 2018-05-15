@@ -1,4 +1,4 @@
-module.exports = function (app, gestorBD) {
+module.exports = function (app, gestorBD, loggerinfo) {
     app.get("/api/usuario/amigo", function (req, res) {
         var criterio = {"email":res.usuario};
         gestorBD.obtenerAmistades(criterio, function (usuarios){
@@ -87,6 +87,7 @@ module.exports = function (app, gestorBD) {
                             error : "se ha producido un error"
                         })
                     } else {
+                        loggerinfo.info("Mensaje enviado de:"+mensaje.emisor+" a:"+mensaje.receptor+" texto:"+mensaje.texto);
                         res.status(201);
                         res.json({
                             mensaje : "Mensaje enviado",
@@ -120,6 +121,7 @@ module.exports = function (app, gestorBD) {
                 var token = app.get('jwt').sign(
                     {usuario: criterio.email, tiempo: Date.now() / 1000},
                     "secreto");
+                loggerinfo.info("Usuario identificado:"+criterio.email);
                 res.status(200);
                 res.json({
                     autenticado: true,

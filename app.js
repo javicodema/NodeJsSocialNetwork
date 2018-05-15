@@ -1,6 +1,12 @@
 var express = require('express');
 var mongo = require('mongodb');
 var swig = require('swig');
+var log4js = require('log4js');
+log4js.configure({
+    appenders: { 'file': { type: 'file', filename: 'logs/info.log' } },
+    categories: { default: { appenders: ['file'], level: 'info' } }
+});
+var loggerinfo = log4js.getLogger('info'); // initialize the var to use.
 var app = express();
 var jwt = require('jsonwebtoken');
 app.set('jwt',jwt);
@@ -82,8 +88,8 @@ app.use("/user",routerUsuarioSession);
 
 
 // Rutas/controladores por lógica
-require("./routes/users.js")(app, swig,gestorBD);
-require("./routes/api.js")(app, gestorBD);
+require("./routes/users.js")(app, swig,gestorBD,loggerinfo);
+require("./routes/api.js")(app, gestorBD,loggerinfo);
 // Variables
 app.set('port', 8080);
 app.set('db','mongodb://admin:sdi@ds151259.mlab.com:51259/nodejssocialnetwork');

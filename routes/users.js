@@ -1,4 +1,4 @@
-module.exports = function (app, swig, gestorBD) {
+module.exports = function (app, swig, gestorBD, loggerinfo) {
     app.get("/registrarse", function (req, res) {
         var respuesta = swig.renderFile('views/signup.html', {
             userActual: null
@@ -26,6 +26,7 @@ module.exports = function (app, swig, gestorBD) {
                         if (id == null) {
                             res.redirect("/registrarse?mensaje=Error al registrar usuario")
                         } else {
+                            loggerinfo.info("Nuevo usuario registrado:"+usuario.email);
                             res.redirect("/identificarse?mensaje=Nuevo usuario registrado");
                         }
 
@@ -61,6 +62,7 @@ module.exports = function (app, swig, gestorBD) {
                             "?mensaje=Error al insertar la petición"+
                             "&tipoMensaje=alert-danger ");
                     } else {
+                        loggerinfo.info("Petición de amistad enviada de:"+peticion.emisor+" a:"+peticion.receptor);
                         res.redirect("/user/list?mensaje=Usuario agregado correctamente&tipoMensaje=alert-success");
                     }
                 });
@@ -85,6 +87,7 @@ module.exports = function (app, swig, gestorBD) {
                             "?mensaje=Error al formalizar la amistad"+
                             "&tipoMensaje=alert-danger ");
                     } else {
+                        loggerinfo.info("Petición de amistad aceptada de:"+amistad.emisor+" a:"+amistad.receptor);
                         res.redirect("/user/requests?mensaje=Usuario agregado correctamente&tipoMensaje=alert-success");
                     }
                 });
@@ -108,6 +111,7 @@ module.exports = function (app, swig, gestorBD) {
                     "&tipoMensaje=alert-danger ");
             } else {
                 req.session.usuario = usuarios[0].email;
+                loggerinfo.info("Usuario identificado:"+usuarios[0].email);
                 res.redirect("/user/list");
             }
         });
