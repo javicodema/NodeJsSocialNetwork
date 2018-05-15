@@ -33,7 +33,7 @@
     var mensajes;
     intervalFunc = setInterval(function() {
         cargarMensajes();
-    }, 5000);
+    }, 200);
     function cargarMensajes(){
         $.ajax({
             url: URLbase + "/mensaje?usuario="+usuario,
