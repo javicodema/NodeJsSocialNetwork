@@ -17,6 +17,10 @@
 <script>
     window.history.pushState("", "", "/cliente.html?w=amigos");
     var amigos;
+    intervalFuncAmigos = setInterval(function(){
+        actualizarSinLeer();
+        actualizarTabla(amigos);
+    }, 1000);
     function cargarAmigos(){
         $.ajax({
             url: URLbase + "/usuario/amigo",
@@ -30,17 +34,41 @@
             },
             error : function (error){
                 clearInterval(intervalFunc);
+                clearInterval(intervalFuncAmigos);
                 $( "#contenedor-principal" ).load("widget-login.html");
             }
         });
     }
+
+    function cargarMensajes(usuario){
+        $.ajax({
+            url: URLbase + "/mensaje?usuario="+usuario,
+            type: "GET",
+            data: { },
+            dataType: 'json',
+            headers: { "token": token },
+            success: function(respuesta) {
+                var mensajes = respuesta;
+                mensajesSinLeer(usuario,mensajes);
+            },
+            error : function (error){
+                clearInterval(intervalFunc);
+                clearInterval(intervalFuncAmigos);
+                $( "#contenedor-principal" ).load("widget-login.html");
+            }
+        });
+    }
+
     function actualizarTabla(amigosMostrar){
         $( "#tablaCuerpo" ).empty(); // Vaciar la tabla
         for (i = 0; i < amigosMostrar.length; i++) {
+             if(amigosMostrar[i].sinLeer==null||amigosMostrar[i].sinLeer==undefined){
+                amigosMostrar[i].sinLeer=0;
+            }
             $( "#tablaCuerpo" ).append(
                 "<tr id="+amigosMostrar[i].email+">"+
                 "<td> <a onclick=mensajes('"+amigosMostrar[i].email+"')>"+amigosMostrar[i].email+"</a></td>" +
-                "<td id='numeroMensajes"+i+"'></td>" +
+                "<td id='numeroMensajes"+i+"'>"+amigosMostrar[i].sinLeer.toString()+"</td>" +
                 "</tr>" );
         }
     }
@@ -64,7 +92,47 @@
     function mensajes(email) {
         emailUser = email;
         window.history.pushState("", "", "/cliente.html?w=mensajes&usuario="+emailUser);
+        clearInterval(intervalFuncAmigos);
+        clearInterval(intervalFunc);
         $( "#contenedor-principal" ).load( "widget-mensajes.html");
     }
+
+    function actualizarSinLeer(){
+        for (i = 0; i < amigos.length; i++) {
+            cargarMensajes(amigos[i].email);
+        }
+        ordenar();
+    }
+
+    function ordenar(){
+        amigos.sort(function(a, b) {
+            if(a.time == null && b.time == null) return 0;
+            if(a.time == null) return +1;
+            if(b.time == null) return -1;
+            return b.time - a.time;
+        });
+    }
+
+    function mensajesSinLeer(email, mensajes){
+        if(mensajes.length == 0)
+            return;
+        var sinLeer = 0;
+        for (i = 0; i < mensajes.length; i++) {
+            if(mensajes[i].destino.includes(Cookies.get("emailUser")) && !mensajes[i].leido)
+                sinLeer++;
+        }
+
+
+        var lastMessage = mensajes[mensajes.length-1];
+        var momento =  new Date(parseInt(lastMessage._id.substring(0, 8), 16) * 1000);
+        for (i = 0; i < amigos.length; i++) {
+            if(amigos[i].email == email) {
+                amigos[i].time = momento;
+                amigos[i].sinLeer = sinLeer;
+                break;
+            }
+        }
+    }
+
 
 </script>

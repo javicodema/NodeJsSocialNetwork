@@ -35,6 +35,8 @@
                 token = respuesta.token;
                 Cookies.set('emailUser', $("#email").val() );
                 Cookies.set('token', respuesta.token);
+                clearInterval(intervalFuncAmigos);
+                clearInterval(intervalFunc);
                 $( "#contenedor-principal" ).load( "widget-amigos.html");
             },
             error : function (error){

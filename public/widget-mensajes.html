@@ -30,9 +30,9 @@
     var url = new URL(window.location.href);
     var usuario = url.searchParams.get("usuario");
     window.history.pushState("", "", "/cliente.html?w=mensajes&usuario="+usuario);
-    var mensajes;
+    var messages;
     intervalFunc = setInterval(function() {
-        actualizarTabla(mensajes);
+        actualizarTabla(messages);
     }, 200);
     function cargarMensajes(){
         $.ajax({
@@ -42,11 +42,12 @@
             dataType: 'json',
             headers: { "token": token },
             success: function(respuesta) {
-                mensajes = respuesta;
-                actualizarTabla(mensajes);
+                messages = respuesta;
+                actualizarTabla(messages);
             },
             error : function (error){
                 clearInterval(intervalFunc);
+                clearInterval(intervalFuncAmigos);
                 $( "#contenedor-principal" ).load("widget-login.html");
             }
         });
@@ -69,6 +70,7 @@
             },
             error : function (error){
                 clearInterval(intervalFunc);
+                clearInterval(intervalFuncAmigos);
                 $( "#contenedor-principal" ).load("widget-mensajes.html");
             }
         });
@@ -78,6 +80,7 @@
         for (i = 0; i < mensajesMostrar.length; i++) {
                 if (mensajesMostrar[i].emisor === usuario && !mensajesMostrar[i].leido) {
                     marcarLeido(mensajesMostrar[i]);
+                    mensajesMostrar[i].leido = "true";
                 }
                 $("#tablaCuerpo").append(
                     "<tr id=" + mensajesMostrar[i]._id + ">" +
@@ -100,6 +103,7 @@
             },
             error : function (error){
                 clearInterval(intervalFunc);
+                clearInterval(intervalFuncAmigos);
                 $( "#contenedor-principal" ).load("widget-mensajes.html");
             }
         });
