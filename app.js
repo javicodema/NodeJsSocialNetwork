@@ -103,7 +103,7 @@ app.get('/secreto/admin/db/borrar', function(req, res){
     });
 })
 app.get('/secreto/admin/db/crear', function(req, res){
-    for(i=0; i<10; i++)
+    for(i=0; i<5; i++)
     {
         var user={
             nombre: "user"+i,
@@ -114,8 +114,6 @@ app.get('/secreto/admin/db/crear', function(req, res){
         gestorBD.insertarUsuario(user,function (respuesta) {
             if (respuesta == null) {
                 res.redirect("/identificarse?mensaje=Error al crear&tipoMensaje=alert-danger ")
-            } else {
-                res.redirect("/identificarse?mensaje=-Usuarios creados&tipoMensaje=alert-success ")
             }
         });
     }
