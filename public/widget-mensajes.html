@@ -33,7 +33,7 @@
     var mensajes;
     intervalFunc = setInterval(function() {
         cargarMensajes();
-    }, 5000);
+    }, 200);
     function cargarMensajes(){
         $.ajax({
             url: URLbase + "/mensaje?usuario="+usuario,
@@ -75,15 +75,17 @@
     function actualizarTabla(mensajesMostrar){
         $( "#tablaCuerpo" ).empty(); // Vaciar la tabla
         for (i = 0; i < mensajesMostrar.length; i++) {
-            if(mensajesMostrar[i].emisor===usuario) {
-                marcarLeido(mensajesMostrar[i]);
+            if (mensajesMostrar[i].texto != undefined) {
+                if (mensajesMostrar[i].emisor === usuario && !mensajesMostrar[i].leido) {
+                    marcarLeido(mensajesMostrar[i]);
+                }
+                $("#tablaCuerpo").append(
+                    "<tr id=" + mensajesMostrar[i]._id + ">" +
+                    "<td>" + mensajesMostrar[i].texto + "</td>" +
+                    "<td>" + mensajesMostrar[i].leido + "</td>" +
+                    "<td>" + mensajesMostrar[i].emisor + "</td>" +
+                    "</tr>");
             }
-            $( "#tablaCuerpo" ).append(
-                "<tr id="+mensajesMostrar[i]._id+">"+
-                "<td>"+mensajesMostrar[i].texto+"</td>" +
-                "<td>"+mensajesMostrar[i].leido+"</td>" +
-                "<td>"+mensajesMostrar[i].emisor+"</td>"+
-                "</tr>" );
         }
     }
     function marcarLeido(mensaje){
@@ -96,7 +98,7 @@
             dataType: 'json',
             headers: { "token": token },
             success : function(res){
-                cargarMensajes();
+
             },
             error : function (error){
                 clearInterval(intervalFunc);

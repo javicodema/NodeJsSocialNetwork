@@ -67,7 +67,7 @@ module.exports = function (app, gestorBD) {
     });
     app.post("/api/mensaje", function(req, res) {
         var mensaje = {
-            emisor : req.body.emisor, //email
+            emisor : res.usuario, //email
             destino : req.body.destino, //email
             texto : req.body.texto,
             leido : false
