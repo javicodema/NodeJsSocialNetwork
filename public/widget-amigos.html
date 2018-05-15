@@ -17,9 +17,6 @@
 <script>
     window.history.pushState("", "", "/cliente.html?w=amigos");
     var amigos;
-    intervalFunc = setInterval(function() {
-        cargarAmigos();
-    }, 5000);
     function cargarAmigos(){
         $.ajax({
             url: URLbase + "/usuario/amigo",

@@ -33,7 +33,7 @@
     var mensajes;
     intervalFunc = setInterval(function() {
         cargarMensajes();
-    }, 200);
+    }, 5000);
     function cargarMensajes(){
         $.ajax({
             url: URLbase + "/mensaje?usuario="+usuario,
@@ -75,7 +75,6 @@
     function actualizarTabla(mensajesMostrar){
         $( "#tablaCuerpo" ).empty(); // Vaciar la tabla
         for (i = 0; i < mensajesMostrar.length; i++) {
-            if (mensajesMostrar[i].texto != undefined) {
                 if (mensajesMostrar[i].emisor === usuario && !mensajesMostrar[i].leido) {
                     marcarLeido(mensajesMostrar[i]);
                 }
@@ -85,7 +84,6 @@
                     "<td>" + mensajesMostrar[i].leido + "</td>" +
                     "<td>" + mensajesMostrar[i].emisor + "</td>" +
                     "</tr>");
-            }
         }
     }
     function marcarLeido(mensaje){
@@ -98,7 +96,6 @@
             dataType: 'json',
             headers: { "token": token },
             success : function(res){
-
             },
             error : function (error){
                 clearInterval(intervalFunc);
