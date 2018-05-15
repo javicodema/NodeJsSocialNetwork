@@ -12,7 +12,7 @@
 				</thead>
 				<tbody>
 				{% for amistad in amistades %}
-				<tr>
+				<tr name="friendship">
 					{% if userActual===amistad.receptor %}
 					<td>{{amistad.emisor}}</td>
 					{% else %}

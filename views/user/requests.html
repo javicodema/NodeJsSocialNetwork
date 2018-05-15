@@ -17,7 +17,7 @@
 				{% for peticion in peticiones %}
 					<tr>
 						<td>{{peticion.emisor}}</td>
-						<td><button type="button" id="acceptButton{{peticion._id.toString()}}" class="btn btn-info">Aceptar</button></td>
+						<td><button type="button" id="acceptButton{{peticion._id.toString()}}" name="request" class="btn btn-info">Aceptar</button></td>
 						<script>
                             $( "#acceptButton{{peticion._id.toString()}}" ).click(function() {
                                 $( "#acceptButton{{peticion._id.toString()}}" ).attr("disabled",true);
