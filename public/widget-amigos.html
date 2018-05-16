@@ -67,8 +67,8 @@
             }
             $( "#tablaCuerpo" ).append(
                 "<tr id="+amigosMostrar[i].email+">"+
-                "<td> <a onclick=mensajes('"+amigosMostrar[i].email+"')>"+amigosMostrar[i].email+"</a></td>" +
-                "<td id='numeroMensajes"+i+"'>"+amigosMostrar[i].sinLeer.toString()+"</td>" +
+                "<td> <a id='chat"+amigosMostrar[i].email+"' name='abrirChat' onclick=mensajes('"+amigosMostrar[i].email+"')>"+amigosMostrar[i].email+"</a></td>" +
+                "<td id='numeroMensajes"+amigosMostrar[i].email+"'>"+amigosMostrar[i].sinLeer.toString()+"</td>" +
                 "</tr>" );
         }
     }

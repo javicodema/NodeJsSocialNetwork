@@ -83,9 +83,9 @@
                     mensajesMostrar[i].leido = "true";
                 }
                 $("#tablaCuerpo").append(
-                    "<tr id=" + mensajesMostrar[i]._id + ">" +
+                    "<tr id=" + mensajesMostrar[i]._id + " name='mensaje'>" +
                     "<td>" + mensajesMostrar[i].texto + "</td>" +
-                    "<td>" + mensajesMostrar[i].leido + "</td>" +
+                    "<td name='leido"+mensajesMostrar[i].leido+"'>" + mensajesMostrar[i].leido + "</td>" +
                     "<td>" + mensajesMostrar[i].emisor + "</td>" +
                     "</tr>");
         }
